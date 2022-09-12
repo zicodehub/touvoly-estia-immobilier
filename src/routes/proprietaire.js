@@ -1,11 +1,9 @@
 const express = require('express');
 const db = require('../db')
 
-const TABLE_NAME = 'people';
+const TABLE_NAME = 'proprietaire';
 var Model = db.model({
-    table: TABLE_NAME,
-
-    moi: "yes"
+    table: TABLE_NAME
 });
 
 // db.begin().then(() => {
@@ -21,9 +19,7 @@ const router = express.Router();
 
 // Create
 router.post('/', async (req, res) => {
-    var clt = Model({
-        name: req.body.name,
-      });
+    var clt = Model(req.body);
     clt.insert()
     res.send(clt)
 });
@@ -39,10 +35,7 @@ router.get('/:id', async (req, res) => {
 // Update
 router.patch('/:id', async (req, res) => {
     const id = req.params.id
-    var clt = Model({
-        id: id,
-        name: req.body.name,
-      });
+    var clt = Model(req.body);
     clt.save()
     res.send(clt)
 });
