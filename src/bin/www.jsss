@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const http = require('http');
-const app = require('../app');
+import http from 'http';
+import app from '../app';
+// const app = require('../app');
 
 // Normalize a port into a number, string, or false.
 function normalizePort(val) {
