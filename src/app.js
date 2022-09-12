@@ -13,14 +13,20 @@ const db = require('./db');
 
 // Database connection
 db.connect()
-  .then(async () => {
-    console.log("DB connected")
-  })
-  .catch(err => console.log("Erreur: DB non connectée"))
+.then(async () => {
+  console.log("DB connected")
+})
+.catch(err => console.log("Erreur: DB non connectée"))
 
 
 
 const clientsRouter = require('./routes/clients');
+const facturesRouter = require('./routes/facture');
+const logementsRouter = require('./routes/logement');
+const paiementsRouter = require('./routes/paiement');
+const proprietairesRouter = require('./routes/proprietaire');
+const reservationsRouter = require('./routes/reservation');
+const visitesRouter = require('./routes/visite');
 
 const errorHandler = require('./middleware/errorHandler');
 
@@ -33,6 +39,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/clients', clientsRouter);
+app.use('/factures', facturesRouter);
+app.use('/logements', logementsRouter);
+app.use('/paiements', paiementsRouter);
+app.use('/proprietaires', proprietairesRouter);
+app.use('/reservations', reservationsRouter);
+app.use('/visites', visitesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
